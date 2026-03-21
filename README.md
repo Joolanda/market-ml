@@ -1,2 +1,3 @@
-# crypto-ci
-Capstone project: CryptoCI — predicting short-term BTC candle direction with ML + news context.
+# market-ml# market-ml
+Exploring machine learning techniques for financial market data, model evaluation, and UI prototyping.
+
