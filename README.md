@@ -5,7 +5,7 @@ This project provides a structured foundation for training, evaluating and compa
 
 ---
 
-## 🚀 Features
+## Features
 
 - Modular ML architecture (`src/ml/`)
 - Multiple models (Random Forest, Logistic Regression, XGBoost)
@@ -19,7 +19,7 @@ This project provides a structured foundation for training, evaluating and compa
 
 ---
 
-## 📁 Project Structure
+## Project Structure
 
 ```
 project/
@@ -48,7 +48,7 @@ project/
 
 ---
 
-## 🧠 Model Comparison
+## Model Comparison
 
 The project includes an extended comparison module that:
 
@@ -78,7 +78,7 @@ print(df)
 
 ---
 
-## 📊 Notebooks
+## Notebooks
 
 Two notebooks are included:
 
@@ -89,7 +89,7 @@ These notebooks are intended for experimentation and analysis.
 
 ---
 
-## 🖥️ Streamlit UI (planned)
+## Streamlit UI (planned)
 
 A lightweight UI will allow users to:
 
@@ -100,7 +100,7 @@ A lightweight UI will allow users to:
 
 ---
 
-## 🛠️ Installation
+## Installation
 
 ```bash
 pip install -r requirements.txt
@@ -108,7 +108,7 @@ pip install -r requirements.txt
 
 ---
 
-## ▶️ Running the comparison
+## Running the comparison
 
 ```bash
 python scripts/run_comparison.py
@@ -127,13 +127,13 @@ python scripts/run_comparison.py
 
 ---
 
-## 🤝 Contributing
+## Contributing
 
 This project is part of a learning and experimentation environment.  
 Contributions, ideas and improvements are welcome.
 
 ---
 
-## 📄 License
+## License
 
 MIT License.
