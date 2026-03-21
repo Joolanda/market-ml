@@ -116,7 +116,7 @@ python scripts/run_comparison.py
 
 ---
 
-## 📌 Roadmap
+## Roadmap
 
 - [ ] Streamlit UI  
 - [ ] Feature importance visualizations  
