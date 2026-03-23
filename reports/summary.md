@@ -1,6 +1,4 @@
-# ============================
-# 12. Summary of Model Results
-# ============================
+# Summary of Model Results
 
 ## Binary Classification — Candle Direction (0/1)
 
