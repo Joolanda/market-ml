@@ -1,5 +1,98 @@
-data/
+# -------------------------
+# Python
+# -------------------------
 __pycache__/
 *.pyc
+*.pyo
+*.pyd
+
+# Virtual environments
+.venv/
+venv/
+env/
+
+# -------------------------
+# Jupyter / Notebooks
+# -------------------------
 .ipynb_checkpoints/
-.env
+*.ipynb_convert/
+
+# -------------------------
+# Data
+# -------------------------
+data/raw/
+data/processed/
+data/interim/
+data/external/
+src/data/
+data/
+
+# -------------------------
+# Models & ML Artifacts
+# -------------------------
+models/
+*.pkl
+*.joblib
+*.sav
+*.h5
+*.onnx
+
+# MLflow
+mlruns/
+mlartifacts/
+.mlflow_uri
+
+# -------------------------
+# Streamlit
+# -------------------------
+.streamlit/
+
+# -------------------------
+# Logs & Reports
+# -------------------------
+logs/
+*.log
+reports/*.csv
+reports/*.html
+
+# -------------------------
+# Docker
+# -------------------------
+docker-build/
+*.tar
+*.img
+
+# -------------------------
+# Terraform
+# -------------------------
+terraform.tfstate
+terraform.tfstate.backup
+.terraform/
+.terraform.lock.hcl
+
+# -------------------------
+# IDE / Editor
+# -------------------------
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# -------------------------
+# OS-specific
+# -------------------------
+.DS_Store
+Thumbs.db
+
+# -------------------------
+# Project-specific ignores
+# -------------------------
+
+# Ignore notebook outputs you don't want versioned
+notebooks/model_tests_legacy.ipynb
+notebooks/model_tests_v2.ipynb
+notebooks/exploration.ipynb
+
+# Cache folders
+cache/
+tmp/
