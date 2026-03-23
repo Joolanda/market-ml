@@ -4,8 +4,8 @@ from .base_model import BaseModel
 class LogisticRegressionModel(BaseModel):
     def __init__(self, **params):
         default_params = {
-            "solver": "lbfgs",
-            "max_iter": 500,
+            "solver": "liblinear", 
+            "max_iter": 2000,
         }
         default_params.update(params)
         self.model = LogisticRegression(**default_params)
