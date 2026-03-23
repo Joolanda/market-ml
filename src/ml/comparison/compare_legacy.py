@@ -5,7 +5,7 @@ from sklearn.metrics import (
     accuracy_score, precision_score, recall_score, f1_score,
     roc_auc_score, confusion_matrix
 )
-from src.ml.training.trainer import train_model
+from src.ml.training.trainer_legacy import train_model
 
 
 def evaluate_model(y_true, y_pred):
