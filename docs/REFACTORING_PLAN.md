@@ -4,13 +4,13 @@ This board tracks the progress of refactoring the `cryptopulse-ai` application i
 
 | To Do | In Progress | Done |
 | :--- | :--- | :--- |
-| **Step 1: Handle CSS** | | |
-| ↳ Create a separate CSS file for styling. | | |
-| ↳ Link the new CSS file to the main application. | | |
-| **Step 2: Move Reusable UI Components** | | |
-| ↳ Identify all reusable UI elements. | | |
-| ↳ Move reusable UI components into a dedicated module. | | |
-| **Step 3: Move the "Brains" (Data & Logic)** | | |
+| **Step 1: Handle CSS** | |x|
+| ↳ Create a separate CSS file for styling. | |x|
+| ↳ Link the new CSS file to the main application. | |x|
+| **Step 2: Move Reusable UI Components** | |x|
+| ↳ Identify all reusable UI elements. | |x|
+| ↳ Move reusable UI components into a dedicated module. | |x|
+| **Step 3: Move the "Brains" (Data & Logic)** |x| |
 | ↳ Relocate data processing logic to `src/data/data_loader.py`. | | |
 | ↳ Move feature engineering logic to `src/features/engineering.py`. | | |
 | ↳ Parameterize functions to accept different assets. | | |
@@ -20,4 +20,4 @@ This board tracks the progress of refactoring the `cryptopulse-ai` application i
 | ↳ Create `Dockerfile.api` for the backend. | | |
 | ↳ Create `Dockerfile.streamlit` for the front-end. | | |
 | ↳ Define cloud infrastructure with Terraform in `infra/`. | | |
-| ↳ Configure Kubernetes in `k8s/` to manage containers. | | |
+| ↳ Configure Kubernetes in `k8s/` to manage containers. | | |git status
