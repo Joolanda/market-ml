@@ -89,7 +89,7 @@ These notebooks are intended for experimentation and analysis.
 
 ---
 
-## Streamlit UI (planned)
+## Streamlit UI
 
 A lightweight UI will allow users to:
 
@@ -98,6 +98,9 @@ A lightweight UI will allow users to:
 - view metrics and confusion matrices  
 - compare models interactively  
 
+```bash
+streamlit run streamlit_app/app.py
+```
 ---
 
 ## Installation
