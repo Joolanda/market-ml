@@ -1,7 +1,26 @@
+# --- Core app dependencies ---
+streamlit
+python-dotenv
+requests
+
+# --- Data & ML ---
 pandas
 numpy
 scikit-learn
-xgboost
+scipy
+
+# --- Finance & TA ---
+ta
+mplfinance
+python-binance
+yfinance
+
+# --- Plotting & visualization ---
 matplotlib
 seaborn
-mplfinance
+plotly
+
+# --- Optional ML models (if used in your app) ---
+xgboost
+lightgbm
+shap

@@ -1,0 +1,139 @@
+/* ===== 1. Streamlit overrides ===== */
+#MainMenu { visibility: hidden; }
+footer { visibility: hidden; }
+header { visibility: hidden; }
+div.block-container { padding-top: 0.5rem; }
+
+/* ===== 2. Utility classes ===== */
+
+.flex { display: flex; }
+.flex-center { display:flex; align-items: center; }
+.flex-between { display:flex; justify-content: space-between; }
+.gap-sm { gap: 0.5rem; }
+
+.text-sm { font-size: 0.85rem; }
+.text-base { font-size: 1rem; }
+.text-lg { font-size: 1.1rem; }
+
+.text-gray { color: #6b7280; }
+.text-light { color: #e5e7eb; }
+
+.rounded-full { border-radius: 999px; }
+
+/* ===== 3. Range Bar component ===== */
+
+.rangebar { margin-top: 0.8rem; margin-bottom: 0.2rem; }
+
+.rangebar-label {
+    font-size: 0.90rem;
+    font-weight: 600;
+    color: #e5e7eb;
+    text-align: center;
+    margin-bottom: 0.35rem;
+}
+
+.rangebar-track {
+    flex: 1;
+    background-color: #e5e7eb;
+    border-radius: 999px;
+    height: 4px;
+    position: relative;
+    overflow: hidden;
+}
+
+.rangebar-fill {
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    border-radius: 999px;
+    background: linear-gradient(90deg,#ef4444,#22c55e);
+}
+
+.rangebar-minmax {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.78rem;
+    color: #9ca3af;
+    margin-top: 0.25rem;
+}
+
+/* ===== TA Gauge Component ===== */
+
+.gauge {
+    text-align: center;
+    margin: 0.5rem 0 1rem 0;
+}
+
+.gauge-title {
+    font-size: 0.95rem;
+    font-weight: 600;
+    margin-bottom: 0.4rem;
+}
+
+.gauge-bar {
+    position: relative;
+    height: 12px;
+    border-radius: 999px;
+    background: linear-gradient(90deg,#ef4444,#f97316,#22c55e);
+}
+
+.gauge-pointer {
+    position: absolute;
+    top: -4px;
+    transform: translateX(-50%);
+    width: 8px;
+    height: 20px;
+    border-radius: 999px;
+    background: #111827;
+}
+
+.gauge-pill {
+    margin-top: 0.35rem;
+    font-size: 0.85rem;
+    padding: 0.25rem 0.8rem;
+    border-radius: 999px;
+    font-weight: 600;
+    background-color: rgba(148,163,184,0.12);
+    color: #4b5563;
+}
+
+/* --- Live Price Header --- */
+.live-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 14px 20px;
+    background: #111;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #222;
+}
+
+.live-header-left {
+    display: flex;
+    gap: 12px;
+    align-items: baseline;
+}
+
+.live-symbol {
+    font-size: 1.4rem;
+    font-weight: 600;
+    color: #fff;
+}
+
+.live-price {
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: #4fc3f7;
+}
+
+.live-header-right {
+    font-size: 1.3rem;
+    font-weight: 600;
+}
+
+.live-change {
+    font-size: 1.3rem;
+}
+

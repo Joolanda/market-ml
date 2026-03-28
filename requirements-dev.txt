@@ -1,0 +1,30 @@
+# --- Jupyter & notebooks ---
+jupyter
+jupyterlab
+ipykernel
+ipywidgets
+notebook
+nbstripout
+
+# --- Testing ---
+pytest
+coverage
+
+# --- Linting & formatting ---
+black
+flake8
+isort
+
+# --- Experimentation / utilities ---
+missingno
+
+# --- ML / Data versioning (DVC) ---
+dvc
+dvc-gs
+dvc-http
+dvc-data
+dvc-render
+dvc-studio-client
+
+# --- Environment / config ---
+python-dotenv

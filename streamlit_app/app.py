@@ -1,5 +1,21 @@
 import streamlit as st
-from pages import overview, predictions, historical, scenarios
+from streamlit_app.pages import overview, predictions, historical, scenarios
+from pathlib import Path
+
+# voorbeeld data
+# current_price = 67420.55
+# price_change_24h = 2.14
+
+# overview.render(current_price, price_change_24h)
+
+
+def load_css(file_path: str):
+    css_path = Path(file_path)
+    if css_path.exists():
+        with open(css_path) as f:
+            st.markdown(f"<style>{f.read()}</style>", unsafe_allow_html=True)
+
+load_css("streamlit_app/assets/style.css")
 
 st.set_page_config(
     page_title="Market ML Dashboard",
@@ -22,15 +38,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-
-
-
-
-
-st.title("Market-ML Dashboard")
-st.write("Welcome to your personal ML lab for financial markets.")
-st.set_page_config(
-    page_title="Market ML Dashboard",
-    page_icon="📈",
-    layout="wide"
-)
