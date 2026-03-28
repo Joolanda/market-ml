@@ -5,7 +5,6 @@ header { visibility: hidden; }
 div.block-container { padding-top: 0.5rem; }
 
 /* ===== 2. Utility classes ===== */
-
 .flex { display: flex; }
 .flex-center { display:flex; align-items: center; }
 .flex-between { display:flex; justify-content: space-between; }
@@ -21,7 +20,6 @@ div.block-container { padding-top: 0.5rem; }
 .rounded-full { border-radius: 999px; }
 
 /* ===== 3. Range Bar component ===== */
-
 .rangebar { margin-top: 0.8rem; margin-bottom: 0.2rem; }
 
 .rangebar-label {
@@ -58,82 +56,132 @@ div.block-container { padding-top: 0.5rem; }
     margin-top: 0.25rem;
 }
 
-/* ===== TA Gauge Component ===== */
-
-.gauge {
-    text-align: center;
-    margin: 0.5rem 0 1rem 0;
-}
-
-.gauge-title {
-    font-size: 0.95rem;
-    font-weight: 600;
-    margin-bottom: 0.4rem;
-}
-
-.gauge-bar {
-    position: relative;
-    height: 12px;
-    border-radius: 999px;
-    background: linear-gradient(90deg,#ef4444,#f97316,#22c55e);
-}
-
-.gauge-pointer {
-    position: absolute;
-    top: -4px;
-    transform: translateX(-50%);
-    width: 8px;
-    height: 20px;
-    border-radius: 999px;
-    background: #111827;
-}
-
-.gauge-pill {
-    margin-top: 0.35rem;
-    font-size: 0.85rem;
-    padding: 0.25rem 0.8rem;
-    border-radius: 999px;
-    font-weight: 600;
-    background-color: rgba(148,163,184,0.12);
-    color: #4b5563;
-}
-
-/* --- Live Price Header --- */
+/* ===========================
+   LIVE PRICE HEADER (NEW)
+=========================== */
 .live-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 14px 20px;
+    padding: 18px 22px;
     background: #111;
-    border-radius: 10px;
+    border-radius: 12px;
     margin-bottom: 20px;
     border: 1px solid #222;
 }
 
 .live-header-left {
     display: flex;
-    gap: 12px;
-    align-items: baseline;
+    flex-direction: column;
 }
 
 .live-symbol {
-    font-size: 1.4rem;
+    font-size: 18px;
     font-weight: 600;
-    color: #fff;
+    color: #aaa;
 }
 
 .live-price {
-    font-size: 1.6rem;
+    font-size: 32px;
     font-weight: 700;
-    color: #4fc3f7;
+    color: white;
 }
 
 .live-header-right {
-    font-size: 1.3rem;
+    font-size: 20px;
     font-weight: 600;
 }
 
-.live-change {
-    font-size: 1.3rem;
+/* ===========================
+   PREDICTION CARDS (NEW)
+=========================== */
+.prediction-card {
+    background: #1a1a1a;
+    padding: 18px;
+    border-radius: 12px;
+    border: 1px solid #333;
+    text-align: center;
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
 }
 
+.prediction-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 16px rgba(0,0,0,0.35);
+}
+
+.prediction-title {
+    font-size: 16px;
+    font-weight: 600;
+    color: #ccc;
+    margin-bottom: 6px;
+}
+
+.prediction-value {
+    font-size: 22px;
+    font-weight: 700;
+    margin-bottom: 4px;
+}
+
+.prediction-confidence {
+    font-size: 14px;
+    color: #aaa;
+}
+
+/* ===========================
+   TECHNICAL GAUGE (NEW)
+=========================== */
+.gauge {
+    margin-top: 25px;
+}
+
+.gauge-title {
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 10px;
+    color: #ddd;
+}
+
+.gauge-bar {
+    position: relative;
+    height: 14px;
+    background: linear-gradient(to right, #e53935, #ffb300, #4caf50);
+    border-radius: 8px;
+    margin-bottom: 12px;
+}
+
+.gauge-pointer {
+    position: absolute;
+    top: -6px;
+    width: 14px;
+    height: 26px;
+    background: white;
+    border-radius: 4px;
+    transform: translateX(-50%);
+    box-shadow: 0 0 8px rgba(255,255,255,0.6);
+}
+
+.gauge-pill {
+    display: inline-block;
+    padding: 6px 14px;
+    background: #222;
+    border-radius: 20px;
+    font-size: 14px;
+    font-weight: 600;
+    color: #ddd;
+    border: 1px solid #333;
+}
+
+/* ===========================
+   RESPONSIVE
+=========================== */
+@media (max-width: 768px) {
+    .live-header {
+        flex-direction: column;
+        text-align: center;
+        gap: 10px;
+    }
+
+    .prediction-card {
+        margin-bottom: 12px;
+    }
+}

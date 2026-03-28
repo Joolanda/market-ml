@@ -1,12 +1,8 @@
 import streamlit as st
-from streamlit_app.pages import overview, predictions, historical, scenarios
 from pathlib import Path
 
-# voorbeeld data
-# current_price = 67420.55
-# price_change_24h = 2.14
-
-# overview.render(current_price, price_change_24h)
+from streamlit_app.pages import overview, predictions, historical, scenarios
+from streamlit_app.data.loaders import get_live_price
 
 
 def load_css(file_path: str):
@@ -15,13 +11,16 @@ def load_css(file_path: str):
         with open(css_path) as f:
             st.markdown(f"<style>{f.read()}</style>", unsafe_allow_html=True)
 
-load_css("streamlit_app/assets/style.css")
 
 st.set_page_config(
     page_title="Market ML Dashboard",
     page_icon="📈",
     layout="wide"
 )
+
+load_css("streamlit_app/assets/style.css")
+
+
 
 PAGES = {
     "📊 Overview": overview,
@@ -30,11 +29,18 @@ PAGES = {
     "🧠 Scenario AI": scenarios,
 }
 
+
 def main():
     st.sidebar.title("Navigation")
     selection = st.sidebar.radio("Go to", list(PAGES.keys()))
     page = PAGES[selection]
-    page.render()
+
+    # Load live data once per page render
+    current_price, price_change_24h = get_live_price("BTC")
+
+    # Pass data into the page renderer
+    page.render(current_price, price_change_24h)
+
 
 if __name__ == "__main__":
     main()
