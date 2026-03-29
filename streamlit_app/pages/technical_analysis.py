@@ -6,7 +6,7 @@ from streamlit_app.logic.ta_logic import (
     build_indicator_results,
     aggregate_overall_sentiment,
 )
-from streamlit_app.data.live_features import get_live_features  # ← JUISTE IMPORT
+from streamlit_app.data.feature_loader import load_features
 
 
 TIMEFRAME_LABELS = {
@@ -16,22 +16,17 @@ TIMEFRAME_LABELS = {
     "1d": "1D",
 }
 
-
 def _timeframe_selector() -> str:
-    cols = st.columns(len(TIMEFRAME_LABELS))
-    keys = list(TIMEFRAME_LABELS.keys())
+    if "ta_timeframe" not in st.session_state:
+        st.session_state["ta_timeframe"] = "1h"
 
-    default_idx = 1  # default 1h
-    selected = st.session_state.get("ta_timeframe", keys[default_idx])
-
-    for i, (tf, label) in enumerate(TIMEFRAME_LABELS.items()):
-        with cols[i]:
-            if st.button(
-                label,
-                key=f"ta_tf_{tf}",
-                type="secondary" if tf == selected else "primary",
-            ):
-                selected = tf
+    selected = st.radio(
+        "Select timeframe",
+        list(TIMEFRAME_LABELS.keys()),
+        format_func=lambda x: TIMEFRAME_LABELS[x],
+        horizontal=True,
+        key="ta_timeframe_radio"
+    )
 
     st.session_state["ta_timeframe"] = selected
     return selected
@@ -43,10 +38,24 @@ def render(current_price=None, price_change_24h=None):
     timeframe = _timeframe_selector()
     st.caption(f"Technical view for timeframe: {TIMEFRAME_LABELS[timeframe]}")
 
-    # Load features from capstone CSVs
-    features = get_live_features(timeframe=timeframe)
+    # Load engineered features from CSVs
+    features = load_features(timeframe)
 
-    indicator_results = build_indicator_results(features)
+   # Pak de laatste rij met indicatorwaarden
+    # Gebruik de laatste rij waar RSI wél een waarde heeft
+    last = features.dropna(subset=["rsi"]).iloc[-1]
+
+
+    indicator_results = build_indicator_results({
+        "rsi": last["rsi"],
+        "macd": last["macd"],
+        "macd_signal": last["macd_signal"],
+        "sma_20": last["sma_20"],
+        "sma_50": last["sma_50"],
+        "bb_position": last["bb_position"],
+        "volume_ratio": last["volume_ratio"],
+    })
+
     overall_sentiment = aggregate_overall_sentiment(indicator_results)
 
     st.markdown("### Technical sentiment overview")
