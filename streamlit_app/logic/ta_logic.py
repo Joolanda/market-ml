@@ -83,15 +83,27 @@ def aggregate_overall_sentiment(indicators: List[IndicatorResult]) -> Sentiment:
 
 
 def build_indicator_results(features: Dict) -> List[IndicatorResult]:
-    rsi = features.get("rsi")
-    macd = features.get("macd")
-    macd_signal = features.get("macd_signal")
-    sma_20 = features.get("sma_20")
-    sma_50 = features.get("sma_50")
-    bb_position = features.get("bb_position")
-    volume_ratio = features.get("volume_ratio")
+    # Veilig floats casten (None of NaN → None)
+    def safe(v):
+        try:
+            if v is None:
+                return None
+            if isinstance(v, float) and pd.isna(v):
+                return None
+            return float(v)
+        except:
+            return None
+
+    rsi = safe(features.get("rsi"))
+    macd = safe(features.get("macd"))
+    macd_signal = safe(features.get("macd_signal"))
+    sma_20 = safe(features.get("sma_20"))
+    sma_50 = safe(features.get("sma_50"))
+    bb_position = safe(features.get("bb_position"))
+    volume_ratio = safe(features.get("volume_ratio"))
 
     results: List[IndicatorResult] = []
+
 
     # RSI
     rsi_sent = _classify_rsi(rsi)
