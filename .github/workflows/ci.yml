@@ -1,0 +1,35 @@
+name: CI
+
+on:
+  push:
+    branches: [ "main", "feature/cloud-skeleton" ]
+  pull_request:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: |
+          pip install -r requirements.txt
+
+      - name: Lint
+        run: |
+          echo "Linting placeholder"
+
+      - name: Test
+        run: |
+          echo "Tests placeholder"
+
+      - name: Build Docker images
+        run: |
+          docker build -f docker/Dockerfile.api -t crypto-api .
+          docker build -f docker/Dockerfile.streamlit -t crypto-frontend .
