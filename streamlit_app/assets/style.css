@@ -1,0 +1,313 @@
+/* ===== 1. Streamlit overrides ===== */
+#MainMenu { visibility: hidden; }
+footer { visibility: hidden; }
+header { visibility: hidden; }
+div.block-container { padding-top: 0.5rem; }
+
+/* ===== 2. Utility classes ===== */
+.flex { display: flex; }
+.flex-center { display:flex; align-items: center; }
+.flex-between { display:flex; justify-content: space-between; }
+.gap-sm { gap: 0.5rem; }
+
+.text-sm { font-size: 0.85rem; }
+.text-base { font-size: 1rem; }
+.text-lg { font-size: 1.1rem; }
+
+.text-gray { color: #6b7280; }
+.text-light { color: #e5e7eb; }
+
+.rounded-full { border-radius: 999px; }
+
+/* ===== 3. Range Bar component ===== */
+.rangebar { margin-top: 0.8rem; margin-bottom: 0.2rem; }
+
+.rangebar-label {
+    font-size: 0.90rem;
+    font-weight: 600;
+    color: #e5e7eb;
+    text-align: center;
+    margin-bottom: 0.35rem;
+}
+
+.rangebar-track {
+    flex: 1;
+    background-color: #e5e7eb;
+    border-radius: 999px;
+    height: 4px;
+    position: relative;
+    overflow: hidden;
+}
+
+.rangebar-fill {
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    border-radius: 999px;
+    background: linear-gradient(90deg,#ef4444,#22c55e);
+}
+
+.rangebar-minmax {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.78rem;
+    color: #9ca3af;
+    margin-top: 0.25rem;
+}
+
+/* ===========================
+   LIVE PRICE HEADER (NEW)
+=========================== */
+.live-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 18px 22px;
+    background: #111;
+    border-radius: 12px;
+    margin-bottom: 20px;
+    border: 1px solid #222;
+}
+
+.live-header-left {
+    display: flex;
+    flex-direction: column;
+}
+
+.live-symbol {
+    font-size: 18px;
+    font-weight: 600;
+    color: #aaa;
+}
+
+.live-price {
+    font-size: 32px;
+    font-weight: 700;
+    color: white;
+}
+
+.live-header-right {
+    font-size: 20px;
+    font-weight: 600;
+}
+
+/* ===========================
+   PREDICTION CARDS (NEW)
+=========================== */
+.prediction-card {
+    background: #1a1a1a;
+    padding: 18px;
+    border-radius: 12px;
+    border: 1px solid #333;
+    text-align: center;
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.prediction-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 16px rgba(0,0,0,0.35);
+}
+
+.prediction-title {
+    font-size: 16px;
+    font-weight: 600;
+    color: #ccc;
+    margin-bottom: 6px;
+}
+
+.prediction-value {
+    font-size: 22px;
+    font-weight: 700;
+    margin-bottom: 4px;
+}
+
+.prediction-confidence {
+    font-size: 14px;
+    color: #aaa;
+}
+
+/* ===========================
+   TECHNICAL GAUGE (NEW)
+=========================== */
+.gauge {
+    margin-top: 25px;
+}
+
+.gauge-title {
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 10px;
+    color: #ddd;
+}
+
+.gauge-bar {
+    position: relative;
+    height: 14px;
+    background: linear-gradient(to right, #e53935, #ffb300, #4caf50);
+    border-radius: 8px;
+    margin-bottom: 12px;
+}
+
+.gauge-pointer {
+    position: absolute;
+    top: -6px;
+    width: 14px;
+    height: 26px;
+    background: white;
+    border-radius: 4px;
+    transform: translateX(-50%);
+    box-shadow: 0 0 8px rgba(255,255,255,0.6);
+}
+
+.gauge-pill {
+    display: inline-block;
+    padding: 6px 14px;
+    background: #222;
+    border-radius: 20px;
+    font-size: 14px;
+    font-weight: 600;
+    color: #ddd;
+    border: 1px solid #333;
+}
+
+/* ===========================
+   RESPONSIVE
+=========================== */
+@media (max-width: 768px) {
+    .live-header {
+        flex-direction: column;
+        text-align: center;
+        gap: 10px;
+    }
+
+    .prediction-card {
+        margin-bottom: 12px;
+    }
+}
+
+.ta-bar {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    margin-bottom: 12px;
+}
+
+.ta-bar-label {
+    font-size: 0.8rem;
+    color: #cccccc;
+}
+
+.ta-bar-track {
+    width: 100%;
+    height: 8px;
+    background: #1f1f1f;
+    border-radius: 999px;
+    overflow: hidden;
+}
+
+.ta-bar-fill {
+    height: 100%;
+    width: 100%;
+    transition: background 0.2s ease;
+}
+
+.ta-bar-bullish {
+    background: linear-gradient(90deg, #1fa67a, #3bd671);
+}
+
+.ta-bar-neutral {
+    background: linear-gradient(90deg, #555555, #777777);
+}
+
+.ta-bar-bearish {
+    background: linear-gradient(90deg, #c0392b, #e74c3c);
+}
+
+.ta-bar-sentiment {
+    font-size: 0.75rem;
+    color: #aaaaaa;
+}
+
+.ta-bar {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    margin-bottom: 12px;
+}
+
+.ta-bar-label {
+    font-size: 0.8rem;
+    color: #cccccc;
+}
+
+.ta-bar-track {
+    width: 100%;
+    height: 8px;
+    background: #1f1f1f;
+    border-radius: 999px;
+    overflow: hidden;
+}
+
+.ta-bar-fill {
+    height: 100%;
+    width: 100%;
+    transition: background 0.2s ease;
+}
+
+.ta-bar-bullish {
+    background: linear-gradient(90deg, #1fa67a, #3bd671);
+}
+
+.ta-bar-neutral {
+    background: linear-gradient(90deg, #555555, #777777);
+}
+
+.ta-bar-bearish {
+    background: linear-gradient(90deg, #c0392b, #e74c3c);
+}
+
+.ta-bar-sentiment {
+    font-size: 0.75rem;
+    color: #aaaaaa;
+}
+
+/* --- Custom sidebar styling (capstone style) --- */
+
+[data-testid="stSidebar"] {
+    background-color: #0e1117 !important;
+    padding-top: 2rem !important;
+}
+
+[data-testid="stSidebar"] .css-1d391kg, 
+[data-testid="stSidebar"] .css-1n76uvr {
+    background-color: transparent !important;
+}
+
+.sidebar-title {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: #ffffff;
+    margin-bottom: 1rem;
+    padding-left: 0.5rem;
+}
+
+.sidebar-item {
+    padding: 0.6rem 1rem;
+    margin: 0.2rem 0;
+    border-radius: 6px;
+    font-size: 1rem;
+    color: #d1d5db;
+    cursor: pointer;
+    transition: background 0.2s ease;
+}
+
+.sidebar-item:hover {
+    background: #1f2937;
+}
+
+.sidebar-item-active {
+    background: #2563eb;
+    color: white !important;
+}
+
