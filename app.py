@@ -4,7 +4,6 @@ from pathlib import Path
 from streamlit_app.pages import overview, predictions, historical, scenarios, technical_analysis
 from streamlit_app.data.live_features import get_live_price
 
-
 def load_css(file_path: str):
     css_path = Path(file_path)
     if css_path.exists():
