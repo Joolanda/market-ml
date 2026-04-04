@@ -89,3 +89,36 @@ This roadmap outlines the transformation of `cryptopulse-ai` into a modular, sca
 
 Cryptopulse‑AI aims to become a professional, modular, and cloud‑native trading intelligence suite — combining clean architecture, a polished UI, and scalable infrastructure to support real‑time analytics and multi‑asset insights.
 
+## 📌 Project Roadmap — High-Level Phases
+
+🎯 Sprint 1 — TA‑engine bouwen
+# RSI
+
+# MACD
+
+# SMA20/50/200
+
+# Bollinger Bands
+
+# ATR
+
+# Volume MA
+
+🎯 Sprint 2 — Prediction engine
+# TA‑based next candle
+
+# Later ML‑based next candle
+
+🎯 Sprint 3 — Data structuur afronden
+# src/data/
+
+# src/features/
+
+# multi‑asset support
+
+🎯 Sprint 4 — Deployment
+# Docker
+
+# Terraform
+
+# Kubernetes
