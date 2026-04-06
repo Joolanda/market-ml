@@ -19,16 +19,18 @@ from src.data.data_loader import load_raw_candles
 # ---------------------------------------------------------
 # 3. Load + prepare data
 # ---------------------------------------------------------
+asset = st.selectbox("Asset", ["BTC"])
+timeframe = st.selectbox("Timeframe", ["15m"])
+
 def load_prediction_data(asset="btc", timeframe="15m"):
     """
     Loads raw candles, engineers features, and returns prediction dict.
     """
     path = f"data/raw/{asset}_{timeframe}_raw.csv"
 
-    df = load_raw_candles(path)
-    df = engineer_features(df)
-
-    prediction = ta_next_candle_prediction(df)
+    df = load_raw_candles(asset, timeframe)
+    df = engineer_features(df, asset, timeframe)
+    prediction = ta_next_candle_prediction(df, asset, timeframe)
     return prediction
 
 

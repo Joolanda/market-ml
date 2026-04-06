@@ -24,7 +24,6 @@ data/raw/
 data/processed/
 data/interim/
 data/external/
-src/data/
 data/
 
 # -------------------------
