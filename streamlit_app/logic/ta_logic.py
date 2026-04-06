@@ -104,7 +104,6 @@ def build_indicator_results(features: Dict) -> List[IndicatorResult]:
 
     results: List[IndicatorResult] = []
 
-
     # RSI
     rsi_sent = _classify_rsi(rsi)
     rsi_status = (

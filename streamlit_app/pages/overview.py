@@ -2,6 +2,7 @@ import streamlit as st
 from streamlit_app.components.ta_gauge import ta_gauge
 from streamlit_app.components.live_price_header import live_price_header
 from streamlit_app.components.prediction_row import prediction_row
+from streamlit_app.data.live_features import fetch_live_candles, render_sparkline
 
 
 def render(current_price=None, price_change_24h=None):
@@ -17,6 +18,16 @@ def render(current_price=None, price_change_24h=None):
         change_pct=price_change_24h
     )
 
+    # --- Sparkline ---
+    df = fetch_live_candles("BTCUSDT", "1m", limit=50)
+
+    st.write("Sparkline wordt aangeroepen")
+    st.write(df.head())
+
+    st.subheader("BTC Sparkline")
+    render_sparkline(df)
+
+    # --- Page content ---
     st.title("Market Overview")
     st.write("This is the overview page. Add charts, summaries, and market data here.")
 

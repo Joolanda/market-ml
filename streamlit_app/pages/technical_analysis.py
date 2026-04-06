@@ -1,4 +1,10 @@
 import streamlit as st
+import sys
+import os
+
+ROOT = os.path.dirname(os.path.dirname(__file__))
+sys.path.append(ROOT)
+
 
 from streamlit_app.components.ta_bar import ta_bar
 from streamlit_app.components.ta_indicator import ta_indicator_table
