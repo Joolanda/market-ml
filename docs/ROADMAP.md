@@ -122,3 +122,38 @@ Cryptopulse‑AI aims to become a professional, modular, and cloud‑native trad
 # Terraform
 
 # Kubernetes
+
+🎯 Sprint 5 — Database
+# TimescaleDB in Docker
+
+# candles_raw → hypertable
+
+# features → hypertable
+
+# predictions → hypertable
+
+# API endpoints voor data ingest
+
+# Streamlit koppelen aan DB
+
+🎯 Sprint 6 — Authentication (Keycloak)
+# Keycloak in Docker
+
+# Realm + client + roles
+
+# Streamlit protected routes
+
+# API protected endpoints
+
+# Tokens + refresh flow
+
+🎯 Sprint 7 — Deployment
+# Docker Compose
+
+# Terraform
+
+# Kubernetes
+
+# Ingress + TLS
+
+# CI/CD
