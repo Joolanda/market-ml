@@ -2,89 +2,99 @@ import os
 import sys
 import streamlit as st
 
-# ---------------------------------------------------------
-# 1. Fix Python path FIRST (before any imports)
-# ---------------------------------------------------------
-ROOT = os.path.dirname(os.path.dirname(os.path.dirname(__file__)))
-sys.path.append(ROOT)
+ROOT = os.path.dirname(os.path.dirname(__file__))
+if ROOT not in sys.path:
+    sys.path.append(ROOT)
 
 # ---------------------------------------------------------
-# 2. Import modules
+# Imports
 # ---------------------------------------------------------
+from src.data.live_data import fetch_live_candles, candles_to_dataframe
 from src.features.prediction import ta_next_candle_prediction
-from src.features.engineering import engineer_features
-from src.data.data_loader import load_raw_candles
+
+from streamlit_app.components.prediction_row import prediction_row
+from streamlit_app.components.ta_gauge import ta_gauge
+from streamlit_app.components.charts import render_sparkline
+
+from streamlit_app.logic.ta_logic import (
+    build_indicator_results,
+    aggregate_overall_sentiment
+)
 
 
 # ---------------------------------------------------------
-# 3. Load + prepare data
+# Page render
 # ---------------------------------------------------------
-asset = st.selectbox("Asset", ["BTC"])
-timeframe = st.selectbox("Timeframe", ["15m"])
+def render():
 
-def load_prediction_data(asset="btc", timeframe="15m"):
-    """
-    Loads raw candles, engineers features, and returns prediction dict.
-    """
-    path = f"data/raw/{asset}_{timeframe}_raw.csv"
-
-    df = load_raw_candles(asset, timeframe)
-    df = engineer_features(df, asset, timeframe)
-    prediction = ta_next_candle_prediction(df, asset, timeframe)
-    return prediction
-
-
-# ---------------------------------------------------------
-# 4. Streamlit UI
-# ---------------------------------------------------------
-def render(current_price=None, price_change_24h=None):
-    st.title("Predictions")
-
-    # Load prediction
-    prediction = load_prediction_data()
-
-    bull = prediction["bullish_probability"]
-    bear = prediction["bearish_probability"]
-    conf = prediction["confidence"]
-    expected = prediction["expected_close"]
+    st.title("AI Predictions")
+    st.write("Machine‑learning forecasts for multiple time horizons.")
 
     # -----------------------------------------------------
-    # Model forecasts
+    # Fetch data
     # -----------------------------------------------------
-    st.markdown("### Model forecasts")
-    st.caption("Short-, mid- and long-term directional predictions based on engineered TA features.")
-
-    cols = st.columns(3)
-
-    with cols[0]:
-        st.metric("Next Candle", "Bullish" if bull > 0.5 else "Bearish", f"{conf*100:.1f}% confidence")
-
-    with cols[1]:
-        st.metric("1D Forecast", "Bullish", "78% confidence")
-
-    with cols[2]:
-        st.metric("1W Forecast", "Neutral", "55% confidence")
-
-    st.markdown("---")
+    raw = fetch_live_candles("BTCUSDT", "1h", limit=200)
+    df = candles_to_dataframe(raw)
 
     # -----------------------------------------------------
-    # Current market snapshot
+    # 1H Prediction (your ML model)
     # -----------------------------------------------------
-    st.markdown("### Current market snapshot")
-    st.write("**Current price:**", current_price)
-    st.write("**24h change:**", price_change_24h)
+    pred_1h = ta_next_candle_prediction(df, "BTC", "1h")
 
-    st.markdown("---")
-
-    # -----------------------------------------------------
-    # Technical rating
-    # -----------------------------------------------------
-    st.markdown("### Technical rating")
-    st.progress(float(bull))
-    st.caption("Overall technical bias based on combined indicators.")
+    features = pred_1h["features"]
+    indicators = build_indicator_results(features)
+    sentiment = aggregate_overall_sentiment(indicators)
 
     # -----------------------------------------------------
-    # Expected close
+    # Sentiment Gauge
     # -----------------------------------------------------
-    st.markdown("### Expected next close")
-    st.metric("Expected close", f"{expected:.2f}")
+    ta_gauge(
+        sentiment=sentiment,
+        confidence=pred_1h["confidence"],
+        label="Next‑Candle Sentiment"
+    )
+
+    # -----------------------------------------------------
+    # Sparkline
+    # -----------------------------------------------------
+    st.subheader("Recent Price Action")
+    render_sparkline(df)
+
+    # -----------------------------------------------------
+    # Multi‑Horizon Forecasts
+    # -----------------------------------------------------
+    st.subheader("Forecast Summary")
+
+    predictions = [
+        {
+            "title": "Next Candle (1h)",
+            "value": "bullish" if pred_1h["bullish_probability"] > 0.5 else "bearish",
+            "confidence": pred_1h["confidence"],
+        },
+        {
+            "title": "1D Forecast",
+            "value": "neutral",
+            "confidence": 0.55,
+        },
+        {
+            "title": "1W Forecast",
+            "value": "bearish",
+            "confidence": 0.32,
+        },
+    ]
+
+    prediction_row(predictions)
+
+    # -----------------------------------------------------
+    # Detailed ML Output
+    # -----------------------------------------------------
+    st.subheader("Model Output Details")
+
+    col1, col2 = st.columns(2)
+    with col1:
+        st.metric("Bullish Probability", f"{pred_1h['bullish_probability']:.1%}")
+    with col2:
+        st.metric("Confidence Score", f"{pred_1h['confidence']:.1%}")
+
+    st.write("### Feature Snapshot")
+    st.json(features)
