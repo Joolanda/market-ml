@@ -1,8 +1,10 @@
 name: Deploy Market-ML
 
+# Manual only: the EKS cluster this targets does not exist (yet). The planned
+# deployment is a single container on AWS (ECS Express Mode or Lightsail Containers);
+# until then this workflow would fail on every push.
 on:
-  push:
-    branches: [ main ]
+  workflow_dispatch:
 
 jobs:
   build-and-deploy:

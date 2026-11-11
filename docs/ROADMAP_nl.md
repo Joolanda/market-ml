@@ -1,6 +1,6 @@
-# 🚀 Cryptopulse-AI — Project Roadmap
+# 🚀 Market-ML — Project Roadmap
 
-Deze roadmap beschrijft de transformatie van `cryptopulse-ai` naar een schaalbare, modulaire en cloud-native applicatie.
+Deze roadmap beschrijft de transformatie van `market-ml` naar een schaalbare, modulaire en cloud-native applicatie.
 
 ---
 
@@ -83,5 +83,5 @@ Deze roadmap beschrijft de transformatie van `cryptopulse-ai` naar een schaalbar
 
 ## 🧭 Vision
 
-Cryptopulse-AI wordt een schaalbare, modulaire en professionele trading intelligence suite — gebouwd op een solide architectuur, met een strakke UI, en klaar voor cloud-native deployment.
+Market-ML wordt een schaalbare, modulaire en professionele trading intelligence suite — gebouwd op een solide architectuur, met een strakke UI, en klaar voor cloud-native deployment.
 

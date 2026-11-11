@@ -1,6 +1,6 @@
 # 🗂️ Refactoring Project: Kanban Board
 
-This board tracks the progress of refactoring the `cryptopulse-ai` application into a scalable, modular, and cloud‑native architecture.
+This board tracks the progress of refactoring the `market-ml` application into a scalable, modular, and cloud‑native architecture.
 
 ---
 

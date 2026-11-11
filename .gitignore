@@ -20,12 +20,9 @@ env/
 # -------------------------
 # Data
 # -------------------------
-data/raw/
-data/processed/
-data/interim/
-data/external/
-src/data/
-data/
+# Only the top-level data folder (downloaded market data) is ignored.
+# Code folders such as src/data/ and streamlit_app/data/ must stay versioned.
+/data/
 
 # -------------------------
 # Models & ML Artifacts

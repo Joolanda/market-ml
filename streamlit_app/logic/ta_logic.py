@@ -4,6 +4,8 @@ from __future__ import annotations
 from dataclasses import dataclass
 from typing import Literal, Dict, List
 
+import pandas as pd  # used by build_indicator_results (NaN check)
+
 Sentiment = Literal["bearish", "neutral", "bullish"]
 
 

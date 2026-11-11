@@ -311,3 +311,10 @@ div.block-container { padding-top: 0.5rem; }
     color: white !important;
 }
 
+
+/* Sidebar text must stay readable on the dark background in light mode too. */
+[data-testid="stSidebar"] label,
+[data-testid="stSidebar"] p,
+[data-testid="stSidebar"] [data-testid="stWidgetLabel"] {
+    color: #d1d5db !important;
+}
