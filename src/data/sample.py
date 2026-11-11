@@ -21,7 +21,7 @@ _PROFILE = {
     "eurusd": (1.20, 0.075, -0.005),
     "eurchf": (1.20, 0.055, -0.020),
     "eurpln": (4.30, 0.060, 0.000),
-    "btcusd": (300.0, 0.65, 0.45),
+    "btcusd": (300.0, 0.65, 0.30),
 }
 
 # Rough monthly rate paths (percent) – piecewise linear anchors.

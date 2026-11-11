@@ -1,0 +1,52 @@
+name: FX Weekly report
+
+# Every Friday after the European close: download fresh data, build the report
+# and commit it to reports/fx_weekly/. Can also be started by hand.
+on:
+  schedule:
+    - cron: "0 18 * * 5"   # Fridays 18:00 UTC
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: fx-weekly-report
+  cancel-in-progress: false
+
+jobs:
+  report:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      # --strict fails the run if any market could not be downloaded,
+      # so a report is never published on sample data.
+      - name: Fetch market data and interest rates
+        run: python cli.py fetch-data --strict
+
+      - name: Build report
+        run: python cli.py fx-weekly
+
+      - name: Commit report
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add reports/fx_weekly
+          if git diff --cached --quiet; then
+            echo "No changes to commit"
+          else
+            git commit -m "FX Weekly report $(date -u +%Y-%m-%d)"
+            git push
+          fi

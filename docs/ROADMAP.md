@@ -1,6 +1,6 @@
-# 🚀 Cryptopulse-AI — Project Roadmap
+# 🚀 Market-ML — Project Roadmap
 
-This roadmap outlines the transformation of `cryptopulse-ai` into a modular, scalable, and cloud‑native trading intelligence platform.
+This roadmap outlines the transformation of `market-ml` into a modular, scalable, and cloud‑native trading intelligence platform.
 
 ---
 
@@ -87,7 +87,7 @@ This roadmap outlines the transformation of `cryptopulse-ai` into a modular, sca
 
 ## 🧭 Vision
 
-Cryptopulse‑AI aims to become a professional, modular, and cloud‑native trading intelligence suite — combining clean architecture, a polished UI, and scalable infrastructure to support real‑time analytics and multi‑asset insights.
+Market-ML aims to become a professional, modular, and cloud‑native trading intelligence suite — combining clean architecture, a polished UI, and scalable infrastructure to support real‑time analytics and multi‑asset insights.
 
 ## 📌 Project Roadmap — High-Level Phases
 

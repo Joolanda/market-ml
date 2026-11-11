@@ -38,8 +38,17 @@ def load_prediction_data(asset="btc", timeframe="15m"):
 def render(current_price=None, price_change_24h=None):
     st.title("Predictions")
 
-    # Load prediction
-    prediction = load_prediction_data()
+    # The next-candle model needs the intraday capstone CSV, which is not in the repo.
+    try:
+        prediction = load_prediction_data()
+    except (FileNotFoundError, KeyError, ValueError) as exc:
+        st.info(
+            "Intraday prediction data not found (`data/raw/btc_15m_raw.csv`). "
+            "This page shows the original next-candle model from the bootcamp project; "
+            "add the 15-minute CSV to use it. The weekly outlook is on the **FX Weekly** page."
+        )
+        st.caption(f"Details: {exc}")
+        return
 
     bull = prediction["bullish_probability"]
     bear = prediction["bearish_probability"]

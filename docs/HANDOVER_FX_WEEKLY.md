@@ -21,26 +21,35 @@ container on AWS."*
 - AWS: one container (ECS Express Mode or Lightsail Containers). Not EKS. App Runner takes
   no new customers since 30 Apr 2026.
 
-## Done in this branch (work in progress, not yet tested end-to-end)
+## Done in this branch
+Data and models (session 1):
 - `.gitignore`: only top-level `/data/` ignored (before, `data/` also hid `src/data/` and
   `streamlit_app/data/`, which is why the app did not start from a fresh clone).
 - `src/config/assets.py` – asset registry + FRED rate series.
-- `src/data/sample.py`, `src/data/sources.py`, `src/data/data_loader.py` – data layer.
-- `streamlit_app/data/live_features.py`, `feature_loader.py` – missing modules restored,
-  with offline fallback.
-- `streamlit_app/logic/ta_logic.py` – missing `import pandas` (all indicators showed "No data").
+- `src/data/` – sources (Yahoo / FRED), seeded sample data, single data loader.
+- `streamlit_app/data/` – live price + feature loaders with offline fallback; `ta_logic.py` pandas import.
 - `src/fx/weekly.py` – weekly features/targets incl. rate differential (with publication lag).
 - `src/fx/models.py` – logistic / ridge / HAR-vol models + walk-forward + evaluation.
 
-## Still to do (day 1 plan)
-1. `src/fx/report.py` – Markdown weekly report per market + track record; CLI commands
-   `fetch-data`, `fx-weekly`, `fx-eval` in `cli.py`.
-2. Streamlit page "FX Weekly" (asset selector, chart with 80% range, report text);
-   remove debug output from `overview.py`; `predictions.py` must not crash without 15m CSV.
-3. Tests (`tests/test_fx_weekly.py`): no look-ahead in features, walk-forward trains only on
-   past weeks, report renders for all assets, app pages import.
-4. CI: run pytest; `deploy.yaml` → manual trigger only (EKS cluster does not exist, fails on
-   every push); new scheduled `weekly-report.yaml` (Fri 18:00 UTC: fetch data, build report, commit).
-5. README rewrite with the story above; fix `LISENCE` → `LICENSE`; roadmap name.
-6. Push: the Claude GitHub app has no write access to `Joolanda/market-ml` yet
-   (GitHub → Settings → Applications → Claude → Configure).
+Report, app, tests, CI (session 2, 11 Nov 2026):
+- `src/fx/report.py` – `AssetOutlook` per market, Markdown report + track record;
+  CLI `fetch-data [--strict]`, `fx-weekly`, `fx-eval`. Sample report in `reports/fx_weekly/`.
+- Streamlit page `streamlit_app/pages/fx_weekly.py` (default page): metrics, chart with
+  out-of-sample 80% band + next week's range, drivers, track record, method.
+  Debug output removed from `overview.py`; `predictions.py` shows a note without the 15m CSV;
+  sidebar text contrast fixed.
+- `tests/test_fx_weekly.py` – 19 tests (look-ahead, rate publication lag, walk-forward only
+  on past weeks, report for all assets, page imports, page renders). Run on sample data only.
+- CI runs pytest + builds report + Docker image; `deploy.yaml` manual only;
+  `weekly-report.yaml` Fridays 18:00 UTC with `fetch-data --strict` (never publishes sample data).
+- Dockerfile now runs the Streamlit app (port 8501, healthcheck).
+- README rewritten; `LISENCE` → `LICENSE`; Cryptopulse-AI → Market-ML in docs.
+
+## Still to do
+1. Push branch (Claude GitHub app needs write access to `Joolanda/market-ml`), open PR, check CI.
+2. First real-data run: `python cli.py fetch-data` locally or "Run workflow" on weekly-report;
+   check the numbers and that the README claims still hold on real data.
+3. Weekly report commits to the default branch: merge this branch first.
+4. AWS: one container on ECS Express Mode or Lightsail Containers (fetch data at startup or
+   from S3); then replace `deploy.yaml`.
+5. Optional: screenshot with real data in `docs/img/fx_weekly.png`.

@@ -7,10 +7,6 @@ from streamlit_app.data.live_features import fetch_live_candles, render_sparklin
 
 def render(current_price=None, price_change_24h=None):
 
-    # Debug info (optioneel)
-    st.write("Current price:", current_price)
-    st.write("24h change:", price_change_24h)
-
     # --- Live Price Header ---
     live_price_header(
         symbol="BTC",
@@ -20,9 +16,6 @@ def render(current_price=None, price_change_24h=None):
 
     # --- Sparkline ---
     df = fetch_live_candles("BTCUSDT", "1m", limit=50)
-
-    st.write("Sparkline wordt aangeroepen")
-    st.write(df.head())
 
     st.subheader("BTC Sparkline")
     render_sparkline(df)

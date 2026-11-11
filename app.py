@@ -9,6 +9,7 @@ sys.path.append(ROOT)
 
 # Import pages
 from streamlit_app.pages import (
+    fx_weekly,
     overview,
     predictions,
     historical,
@@ -38,8 +39,11 @@ st.set_page_config(
 load_css("streamlit_app/assets/style.css")
 
 
+DEFAULT_PAGE = "💱 FX Weekly"
+
 # Page registry
 PAGES = {
+    "💱 FX Weekly": fx_weekly,
     "📊 Overview": overview,
     "🤖 Predictions": predictions,
     "📈 Technical Analysis": technical_analysis,
@@ -56,14 +60,14 @@ def main():
         selected_page = st.radio(
             "Navigation",
             list(PAGES.keys()),
-            index=list(PAGES.keys()).index(st.session_state.get("page", "📊 Overview")),
+            index=list(PAGES.keys()).index(st.session_state.get("page", DEFAULT_PAGE)),
             key="nav_selector"
         )
 
         st.session_state["page"] = selected_page
 
     # Determine active page
-    active_page = st.session_state.get("page", "📊 Overview")
+    active_page = st.session_state.get("page", DEFAULT_PAGE)
     page = PAGES[active_page]
 
     # Load live data once per page render

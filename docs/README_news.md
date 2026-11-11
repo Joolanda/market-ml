@@ -1,6 +1,6 @@
 ## News Data Pipeline (example)
 
-This document outlines the purpose and technical implementation of the news data pipeline for the CryptoPulse AI project.
+This document outlines the purpose and technical implementation of the news data pipeline for the Market-ML project.
 
 ## 1. Goal
 
